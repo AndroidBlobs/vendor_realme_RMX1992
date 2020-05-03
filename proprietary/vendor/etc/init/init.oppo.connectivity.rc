@@ -1,0 +1,42 @@
+#ifdef VENDOR_EDIT
+#Tao.Hui@PSW.CN.WiFi.Basic.Custom.1884719 20190308
+#add for bdf fw rus
+service bdfAutoUpdate /vendor/bin/init.oppo.wifiAutoRecovery.sh "bdfAutoUpdate"
+    class main
+    user root
+    group root system misc wifi
+    seclabel u:r:rutilsdaemon:s0
+    disabled
+    oneshot
+
+service sauFileTransfer /vendor/bin/init.oppo.wifiAutoRecovery.sh "sauFileTransfer"
+    class main
+    user root
+    group root system misc wifi
+    seclabel u:r:rutilsdaemon:s0
+    disabled
+    oneshot
+
+service wifiFwAssert /vendor/bin/init.oppo.wifiAutoRecovery.sh "wifiFwAssert"
+    class main
+    user root
+    group root system misc wifi
+    seclabel u:r:rutilsdaemon:s0
+    disabled
+    oneshot
+
+#endif  /* VENDOR_EDIT */
+
+#ifdef VENDOR_EDIT
+#Xiao.Liang@PSW.CN.WiFi.Basic.Switch.2078149, 2019/10/12
+#Add for: we allow to do driver reload when trigger disable / restart wifi
+on property:vendor.oppo.wifi.reload.wlandriver=*
+    setprop oppo.wifi.reload.wlandriver ${vendor.oppo.wifi.reload.wlandriver}
+
+on property:vendor.oppo.wifi.driver.insmod=*
+    setprop oppo.wifi.driver.insmod ${vendor.oppo.wifi.driver.insmod}
+
+on property:vendor.oppo.wifi.minidump=*
+    setprop oppo.wifi.minidump ${vendor.oppo.wifi.minidump}
+
+#endif  /* VENDOR_EDIT */
